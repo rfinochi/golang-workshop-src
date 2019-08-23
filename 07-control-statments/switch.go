@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+)
 
 func main() {
 	const finger = 3
@@ -19,5 +22,16 @@ func main() {
 		fmt.Println("Pinky")
 	default:
 		fmt.Println("incorrect finger number")
+	}
+
+	fmt.Print("Go runs on ")
+
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Println("OS X.")
+	case "linux":
+		fmt.Println("Linux.")
+	default:
+		fmt.Printf("%s.", os)
 	}
 }
