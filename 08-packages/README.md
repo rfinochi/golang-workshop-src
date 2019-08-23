@@ -1,8 +1,8 @@
 # Packages
 
-La buena organizacion del codigo es fundamental en cualquier proyecto. Organizar codigo en multiples directorios y multiples archivos permite mantener y probar el codigo mas facilmente. Los directorios son llamados `packages` en Golang. Puede haber uno o mas archivos en un `package`. They are all bound by using the same package name at the beginning of the file. Importing a package is done by providing the path to the directory instead of the file in the package.
+La buena organizacion del codigo es fundamental en cualquier proyecto. Organizar codigo en multiples directorios y multiples archivos permite mantener y probar el codigo mas facilmente. Los directorios son llamados `packages` en Golang. Puede haber uno o mas archivos en un `package`. Para importar paquetes se debe indicar el path al directorio que lo contiene.
 
-La siguiente estructura es la indicada para utilizar `packages`:
+La siguiente estructura de proyecto es la indicada para utilizar paquetes:
 
 ```bash
 Project Root directory
@@ -13,19 +13,17 @@ Project Root directory
 
 El directorio `bin` contiene los binarios del proyecto que se crean con el comando `go install`.
 
-El directorio `pkg` contiene las version compiladas de los paquetes con extension `.a` (package archives).
+El directorio `pkg` contiene las versiones compiladas de los paquetes con extension `.a` (package archives).
 
 El directorio `src` contiene el codigo fuente del proyecto organizado en multiples archivos y directorios.
 
 ---
-To run the exercise, open the root folder for this exercise in VSCode and it will automatically infer the GOPATH for this project.
+Para ejecutar el ejercicio:
 
-Running `GOPATH=$PWD go install app` will compile the code and if all goes well, will add an executable named `app` to the `bin` folder
-
-Use of `GOPATH` is necessary as we are setting the value for the `GOPATH` environment variable just for running go install
-
-Packages for the exercise should be created under the `src` folder without a `main` function as there should be only one `main` function for the whole application since only one entrypoint for an application is permitted.
-
+1. Copiar los directorio `app` y `geometry` al workspace.
+1. Correr el comando `go install` dentro del directorio `geometry`.
+1. Correr el comando `go build` dentro del directorio `app`.
+1. Chequear que se genero el ejecutable.
 ---
 
 ## Referencias
