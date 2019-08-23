@@ -2,7 +2,7 @@
 
 La buena organizacion del codigo es fundamental en cualquier proyecto. Organizar codigo en multiples directorios y multiples archivos permite mantener y probar el codigo mas facilmente. Los directorios son llamados `packages` en Golang. Puede haber uno o mas archivos en un `package`. They are all bound by using the same package name at the beginning of the file. Importing a package is done by providing the path to the directory instead of the file in the package.
 
-For using packages, a particular folder structure is expected as shown below:
+La siguiente estructura es la indicada para utilizar `packages`:
 
 ```bash
 Project Root directory

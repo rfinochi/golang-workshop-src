@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"geometry"
-	"github.com/rfinochi/golang-workshop-src/08-package/math"
 )
 
 func main() {
