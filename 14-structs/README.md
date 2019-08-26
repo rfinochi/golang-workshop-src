@@ -78,7 +78,7 @@ func (t Type) MethodName(parameter list) {
 }
 ```
 
-Usualmente se definie el codigo del metodo en el mismo archivo que el tipo que lo contiene a fin de tener todo el codigo relacionado junto.
+Usualmente se define el codigo del metodo en el mismo archivo que el tipo que lo contiene a fin de tener todo el codigo relacionado junto.
 
 En el siguiente ejemplo se agrega el metodo `print` al tipo `Employee`, definido en los ejemplo anteriores, para imprimir el contenido del registro mas claramente:
 
