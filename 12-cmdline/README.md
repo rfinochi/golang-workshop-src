@@ -2,7 +2,7 @@
 
 ## Argumentos
 
-Interactuar con la linea de comando es muy util y muy comun al ejecutar scripts y programas que no tienen GUI. El paquete `os` se usa para tener acceso a los argumentos de la linea de comomandos al ejecutar un programa de Golang.
+Interactuar con la linea de comando es muy util y muy comun al ejecutar scripts y programas que no tienen GUI. El paquete `os` se usa para tener acceso a los argumentos de la linea de comandos al ejecutar un programa de Golang.
 
 Los argumentos de la linea de comandos estan disponibles en el arreglo `os.Args`:
 

@@ -26,7 +26,7 @@ La funcion `ReadFile` recibe el path completo al archivo como argumento. Como el
 
 La funcion `ReadFile` retorna dos valores, el contendio del archivo, y un objeto con la informacion detallada si se hubiera producido un error, si no hay error el objeto retornado es `nil`.
 
-La informacion se lee como una arreglo de bytes. Para convertir ese arreglo de bytes a un string se utiliza la funcion `string`.
+La informacion se lee como una arreglo de bytes. Para convertir ese arreglo de bytes a un string se utiliza la funcion de conversion `string`.
 
 ## Escritura
 
@@ -43,4 +43,4 @@ if err != nil {
 
 En el ejemplo anterior los datos son un string que es convertido a un arreglo de bytes con la funcion `byte`. La funcion `WriteFile` requiere especificcar el modo de escritura para chequear si el usuario tiene permisos suficientes en el sistema de archivos.
 
-El valor de retorno de la funcion `WriteFile` es un onjeto que confiente la informacion detalla si se hubiera producido un error, o `nil` si no lo hubiera.
+El valor de retorno de la funcion `WriteFile` es un objeto que contiene la informacion detalla del problema, si se hubiera producido un error, o `nil` si no lo hubiera.

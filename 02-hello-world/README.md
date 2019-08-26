@@ -25,7 +25,7 @@ En esta seccion vamos a revisar cada linea del programa `Hello World`.
 
 Linea 1 => `package main`
 
-Los __packages__ son la forma de agrupar funcinalidad comun en Golang. El package default es `main` y usualmente significa que el archivo que lo contiene es el entrypoint.
+Los __packages__ son la forma de agrupar funcionalidad comun en Golang. El package default es `main` y usualmente significa que el archivo que lo contiene es el entrypoint.
 
 Linea 3 => `import "fmt"`
 
@@ -35,7 +35,7 @@ Linea 5 => `func main() {`
 
 Las funciones en Golang se definen con el keyword `func`. En esta linea estamos definiendo una funcion llamada `main` sin argumentos. El codigo de la funcion se escribe entre `{ }`.
 
-Para crear un ejecutable en Golang tiene que existir una funcion llamada `main` dentro de un package `main`. Solo puede haber una funcion `main`, incluso si tenemos muchos archivos `.go` (solo puede existir un entrypoint por ejecutable)
+Para crear un ejecutable en Golang tiene que existir una funcion llamada `main` dentro de un package tambien llamado `main`. Solo puede haber una funcion `main`, incluso si tenemos muchos archivos `.go` (solo puede existir un entrypoint por ejecutable)
 
 Linea 6 => `fmt.Println("Hello World")`
 

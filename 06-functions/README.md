@@ -1,8 +1,8 @@
 # Funciones
 
-Una funcion es un grupo de instruccion que se ejecutan todas juntas como un bloque. Una funcion puede o no tener argumentos de entrada, y retornar valores.
+Una funcion es un grupo de instrucciones que se ejecutan todas juntas como un bloque. Una funcion puede o no tener argumentos de entrada, y retornar valores.
 
-En Golang una funcion se define con le keyword `func` con el siguiente formato:
+En Golang una funcion se define con el keyword `func` con el siguiente formato:
 
 ```go
 func <name>(<arg1> <type of arg1>, ...) <return type> {
@@ -16,9 +16,9 @@ func AddIntegers(a int, b int) int {
     return a + b
 }
 ```
-El keyword `return` es usado para indicar que valor la funcion va a retornar.
+El keyword `return` es usado para indicar que valor va a retornar la funcion.
 
-Para incovar la funcion:
+Para llamar una funcion:
 
 ```go
 AddIntegers(10, 20) => 30
@@ -39,7 +39,7 @@ En el ejemplo anterior se calcula los valores en la misma linea junto con la ins
 
 ## Blank Identifier
 
-Se utiliza el __blank identifier__  en el lugar de un valor que se quiere descartar al llamar una funcion:
+Se utiliza el __blank identifier__  en el lugar de un valor que se quiere descartar al llamar a una funcion:
 
 ```go
 var _, diff = SumDifference(10, 20)
@@ -50,7 +50,7 @@ fmt.Println("Difference is ", diff)
 
 ## Named return values
 
-Cuando se define una funcion se le puede asignar un nombre a tipo de dato de retorno para luego referenciarlo en el codigo de la funcion.
+Cuando se define una funcion se le puede asignar un nombre al tipo de dato de retorno para luego referenciarlo en el codigo de la funcion.
 
 
 ```go

@@ -47,7 +47,7 @@ Una manera de chequear si una clave existe es la siguiente:
 data, ok := m["some key"]
 ```
 
-Si `ok` es `true`, la clave existe y la variabla `data` contendra la informacion recuperada, si `ok` es `false` la clave no existe.
+Si `ok` es `true`, la clave existe y la variable `data` contendra la informacion recuperada, si `ok` es `false` la clave no existe.
 
 ## Iteraciones
 
@@ -90,6 +90,6 @@ El tamaño de un map es retornado por la funcion `len`. Esta funcion retorna la 
 len(m)
 ```
 
-## Type
+## Tipo
 
 Un map es un tipo de dato por referencia, igual que un slice. Por lo tanto si un map se asigna a una otra variable, ambas variable apuntan a los mismos pares (clave, valor). Lo mismo sucede si se pasa como argumento en una funcion.

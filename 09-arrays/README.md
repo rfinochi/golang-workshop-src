@@ -1,6 +1,6 @@
 # Arreglos
 
-Una coleccion de elementos de un mismo tipo es un arreglo. Como Golang es una lenguaje fuertemente tipado no es posible mezclar valores de diferentes tipos en una arreglo.
+Una coleccion de elementos de un mismo tipo es un arreglo. Como Golang es un lenguaje fuertemente tipado no es posible mezclar valores de diferentes tipos en un arreglo.
 
 Un arreglo se define como `[size]type`: 
 
@@ -11,9 +11,9 @@ fmt.Println(a)
 > [0 0 0]
 ```
 
-En el ejemplo anterior se define una arreglo de enteros de 3 elementos. La salida es ceros por que es el valor por defecto del tipo de datos `int`.
+En el ejemplo anterior se define un arreglo de enteros de 3 elementos. La salida es ceros por que es el valor por defecto del tipo de datos `int`.
 
-El primer indice de una arreglo es `0` en vez de `1`. Se accede a los valores de una arreglo usando el numero del indice, y se asignan valores con el operador `=`.
+El primer indice de un arreglo es `0` en vez de `1`. Se accede a los valores de un arreglo usando el numero del indice, y se asignan valores con el operador `=`.
 
 ```go
 var a [3]int
@@ -54,7 +54,7 @@ fmt.Println("Copy    :", b)
 
 Eso significa que cuando un arreglo se pasa como parametro de entrada a una funcion es pasado por valor. Por lo tanto cualquier cambio que se haga dentro de la funcion no afectara al arreglo original.
 
-La funcion `len` se usa para saber el tamaño de un arreglo:
+La funcion `len` se usa para conocer el tamaño de un arreglo:
 
 ```go
 a := [...]int{1, 2, 3}
@@ -65,7 +65,7 @@ fmt.Println(len(a))
 
 Una forma de interactuar con un arreglo es utilizar el keyword `range`. Este retorna el indice del arreglo y el valor. 
 
-El siguiente ejemplo imprime el indice y el valor de cada elemento del arreglo, y suma todos los valores.
+El siguiente ejemplo imprimen el indice y el valor de cada elemento del arreglo, y suma todos los valores.
 
 ```go
 a := [...]int{1, 2, 3, 4, 5}
@@ -174,7 +174,7 @@ fmt.Println(i)
 > [0 0 0 0 0]
 ```
 
-El tamaño de un slice se puede incrementar utilizando la funcion `append`. Esto crea un nuevo arreglo subyacente con el nuevo tamaño, y copia de todos los valores existentes en el arreglo original, y los nuevos valores al final:
+El tamaño de un slice se puede incrementar utilizando la funcion `append`. Esto crea un nuevo arreglo subyacente con el nuevo tamaño, y copia de todos los valores existentes en el arreglo original, mas los nuevos valores al final:
 
 ```go
 append(destination, value1, value2, ...)

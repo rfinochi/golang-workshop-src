@@ -1,10 +1,10 @@
 # Instrucciones de control
 
-Golang soporta multiples de control incluyendo iteradores.
+Golang soporta multiples instrucciones de control e iteradores.
 
 ## If - else if - else
 
-La siguiente es una instrucction de control:
+La siguiente es una instrucction de control condicional:
 
 ```go
 if condition {
@@ -38,7 +38,7 @@ Esto es util, por ejemplo. cuando se requiere una inicializacion. El `;` se usa 
 
 ## for
 
-Hay una sola instruccion de iteracion en Golang, el iterador `for`. No existen iteradores `while` o `do .. while` que estan presentes en otros lenguajes.
+Hay una sola instruccion de iteracion en Golang, el iterador `for`. No existen los iteradores `while` o `do .. while` que estan presentes en otros lenguajes.
 
 La sintaxis es:
 
@@ -48,11 +48,11 @@ for initialization; condition; post {
 }
 ```
 
-La inicializacion se ejecuta solo una vez. Luego de que el iterador es inicializado, se chequea la condicion. Si la condicion se evalua verdadera, el codigo dentro de `{ }` se ejecuta seguido de la instruccion indicada en el `post`. La instruccion `post` se ejecuta luego de cada iteracion. Luego de que la instruccion `post` se ejecuta, la condicion se vuele a chequear. Si es verdadera el iterador se vuelve a ejecutar, si es falsa el iterador termina.
+La inicializacion se ejecuta solo una vez. Luego de que el iterador es inicializado, se chequea la condicion. Si la condicion se evalua verdadera, el codigo dentro de `{ }` se ejecuta seguido de la instruccion indicada en el `post`. La instruccion `post` se ejecuta luego de cada iteracion. Luego de que la instruccion `post` se ejecuta, la condicion se vuele a chequear. Si es verdadera, el iterador se vuelve a ejecutar, si es falsa el iterador termina.
 
 Los tres componentes `initialization`, `condition` y `post` son opcionales en Golang.
 
-El siguiente ejemplo imprime numeros del 1 al 10 usando un iterador `for`:.
+El siguiente ejemplo imprime numeros del 1 al 10 usando un iterador `for`:
 
 ```go
 for i := 1; i <= 10; i = i + 1 {

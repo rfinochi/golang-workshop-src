@@ -1,6 +1,6 @@
 # Operadores
 
-Golang soporta la mayoria de los operadores que tienen otros lenguajes. Se dividen en dos categorias.
+Golang soporta la mayoria de los operadores que tienen otros lenguajes. Se dividen en dos categorias:
 
 ## Numericos
 

@@ -1,7 +1,7 @@
 # Instalacion
 
-1. Descarga la version para tu OS desde [https://golang.org/dl](https://golang.org/dl).
-1. Abri el instalador y segui las [instrucciones](https://golang.org/doc/install).
+1. Descargar la version para tu OS desde [https://golang.org/dl](https://golang.org/dl).
+1. Abrir el instalador y seguir las [instrucciones](https://golang.org/doc/install).
     
     Go quedara instalado por default en:
     
@@ -26,7 +26,7 @@
 
     Es conveniente agregar [GOPATH](https://golang.org/doc/code.html#GOPATH)/bin al PATH.
 
-1. Para chequear que tu instalacion esta correctar tipear en la consola 
+1. Para chequear que la instalacion esta correctar tipear en la consola 
     
         $ go version
 
