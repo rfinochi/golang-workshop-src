@@ -54,7 +54,7 @@ Cuando se define una funcion se le puede asignar un nombre al tipo de dato de re
 
 
 ```go
-func Product(a int, b int) prod int {
+func Product(a int, b int) (prod int) {
     prod = a * b
     return
 }

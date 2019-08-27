@@ -1,7 +1,7 @@
 // Additional math funcions
 package math
 
-// Caculate a Fibonacci number
+// Calculate a Fibonacci number
 func Fibonacci(n int) int {
         if n < 2 {
                 return n
