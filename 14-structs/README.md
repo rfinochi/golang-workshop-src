@@ -52,7 +52,7 @@ fmt.Println(emp)
 > {SomeThing  {AA CO}}
 ```
 
-Los campos anidados se acceden con multiples nivles de notacion de punto.
+Los campos anidados se acceden con multiples niveles de notacion de punto.
 
 ```go
 fmt.Println(emp.address.city)
@@ -62,11 +62,11 @@ fmt.Println(emp.address.city)
 
 ## Visibilidad
 
-Un struct y sus campos son visibles por fuera del paquete que los contiene dependiendo de la primera letra de su nombre. Si el struct employee es llamado `employee` en vez de `Employee`, no sera visible por fuera del paquete donde se declaro. Es se llama un tipo **exportable** . La misma condicion se aplica a los campos de un struct.
+Un struct y sus campos son visibles por fuera del paquete que los contiene dependiendo de la primera letra de su nombre. Si el struct employee es llamado `employee` en vez de `Employee`, no sera visible por fuera del paquete donde se declaro. Eso se llama un tipo **exportable** . La misma condicion se aplica a los campos de un struct.
 
 ## Igualdad
 
-Un struct es un tipo por valor. Dos variables struct se consideran iguales si todos los valores de sus campos son iguales . Esto quiere decir que si un struct tiene campos que no se pueden comparar , como un `map`, la operacion de comparacion (`==`) va a fallar.
+Un struct es un tipo por valor. Dos variables struct se consideran iguales si todos los valores de sus campos son iguales. Esto quiere decir que si un struct tiene campos que no se pueden comparar, como un `map`, la operacion de comparacion (`==`) va a fallar.
 
 ## Methods/Receivers
 

@@ -1,14 +1,12 @@
 # Interfaces
 
-La definicion de interfaces del mundo de la programacion orientada a objetos dice que una interfaces define lo que un objeto tiene que hacer, y una clase como lo hace.
-
 En Golang, una interfaz es un conjunto de firmas de metodos. Si un tipo tiene una definicion para esos metodos, se dice que implementa la interfaz. A diferencia de otros lenguajes, *la asociacion de un tipo con una interfaz es implicita*. 
 
-La principal ventaja del uso de intefaces en un lenguaje estatico como Golang es la reutilizacion de codigo.
+La principal ventaja del uso de interfaces en un lenguaje estatico como Golang es la reutilizacion de codigo.
 
 Un tipo puede implementar mas de una interfaz.
 
-El siguiente ejemplo ilustra el uso de interfaces. Una compania tiene empleados en dos categorias: permanentes y contratados. Las dos categorias de empleados tienen un salario a fin de mes, pero el calculo es diferente.
+El siguiente ejemplo ilustra el uso de interfaces. Una compania tiene empleados en dos categorias, permanentes y contratados. Las dos categorias de empleados tienen un salario a fin de mes, pero el calculo es diferente para cada tipo de empleado.
 
 Esta situacion se puede modelar en Golang de la siguiente manera:
 
@@ -45,6 +43,6 @@ for _, v := range sc {
 fmt.Println(totalPayout)
 ```
 
-En el siguiente ejemplo se definen dos tipos para cada categoria de empleado, `Permanent` y `Contract`. El metodo `calculateSalary` se define para los dos tipos. El calculo es diferente para cada tipo.
+En el ejemplo anterior se definen dos tipos para cada categoria de empleado, `Permanent` y `Contract`. El metodo `calculateSalary` se define para los dos tipos. El calculo es diferente para cada tipo.
 
 Para calcular el total a pagar para todos los empleados se crea un arreglo de 3 empleados. El salario de cada empleado se calcula en un iterador `for` llamando al mismo metodo `calculateSalary` independientemente del tipo subyacente. Esto es posible por que el tipo del arreglo es la interfaz `SalaryCalculator` que tambien define un metodo `calculateSalary`. Notar que no es necesario explicitar que los tipos `Permanent` y `Contract` implementan `SalaryCalculator`.
