@@ -10,7 +10,7 @@ type BasePassenger struct {
 }
 
 func (*BasePassenger) GetDiscount() float32 {
-	return 1
+	return 0
 }
 
 type LastMinutePassenger struct {
@@ -24,7 +24,7 @@ type EmployeeAirlinePassenger struct {
 }
 
 func (*EmployeeAirlinePassenger) GetDiscount() float32 {
-	return 0
+	return 1
 }
 
 type EmployeeAirlineLastMinutePassenger struct {
