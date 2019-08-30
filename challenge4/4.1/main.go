@@ -12,26 +12,18 @@ import (
 )
 
 type item struct {
-	ID     int    `json:"Id"`
-	Title  string `json:"Title"`
-	IsDone bool   `json:"IsDone"`
+	ID     int    `json:"id,omitempty"`
+	Title  string `json:"title,omitempty"`
+	IsDone bool   `json:"isdone,omitempty"`
 }
 
-type allItems []item
+var items = []Item {}
 
-var items = allItems{
-	{
-		ID:     1,
-		Title:  "Ir al workshop de Go",
-		IsDone: true,
-	},
+func homeEndpoint(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Welcome to the Todo Web Api")
 }
 
-func home(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the TodoAPI!")
-}
-
-func createItem(w http.ResponseWriter, r *http.Request) {
+func createItemEndpoint(w http.ResponseWriter, r *http.Request) {
 	var newItem item
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -45,7 +37,7 @@ func createItem(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(newItem)
 }
 
-func getOneItem(w http.ResponseWriter, r *http.Request) {
+func getItemEndpoint(w http.ResponseWriter, r *http.Request) {
 	itemID, _ := strconv.Atoi(mux.Vars(r)["id"])
 
 	for _, singleItem := range items {
@@ -55,11 +47,11 @@ func getOneItem(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func getAllItems(w http.ResponseWriter, r *http.Request) {
+func getItemsEndpoint(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(items)
 }
 
-func updateItem(w http.ResponseWriter, r *http.Request) {
+func updateItemEndpoint(w http.ResponseWriter, r *http.Request) {
 	itemID, _ := strconv.Atoi(mux.Vars(r)["id"])
 	var updatedItem item
 
@@ -79,7 +71,7 @@ func updateItem(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func deleteItem(w http.ResponseWriter, r *http.Request) {
+func deleteItemEndpoint(w http.ResponseWriter, r *http.Request) {
 	itemID, _ := strconv.Atoi(mux.Vars(r)["id"])
 
 	for i, singleItem := range items {
@@ -94,12 +86,12 @@ func deleteItem(w http.ResponseWriter, r *http.Request) {
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 
-	router.HandleFunc("/", home)
-	router.HandleFunc("/todo", createItem).Methods("POST")
-	router.HandleFunc("/todo", getAllItems).Methods("GET")
-	router.HandleFunc("/todo/{id}", getOneItem).Methods("GET")
-	router.HandleFunc("/todo/{id}", updateItem).Methods("PATCH")
-	router.HandleFunc("/todo/{id}", deleteItem).Methods("DELETE")
+	router.HandleFunc("/", homeEndpoint)
+	router.HandleFunc("/todo", createItemEndpoint).Methods("POST")
+	router.HandleFunc("/todo", getItemsEndpoint).Methods("GET")
+	router.HandleFunc("/todo/{id}", getItemEndpoint).Methods("GET")
+	router.HandleFunc("/todo/{id}", updateItemEndpoint).Methods("PATCH")
+	router.HandleFunc("/todo/{id}", deleteItemEndpoint).Methods("DELETE")
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
