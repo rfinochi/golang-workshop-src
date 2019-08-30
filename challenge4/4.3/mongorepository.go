@@ -31,7 +31,6 @@ func (MongoRepository) UpdateItem(item Item) {
 	disconnect(ctx,client)
 }
 
-
 func (MongoRepository) GetItems() (items []Item) {
 	ctx, client := connnect()
 
@@ -68,8 +67,6 @@ func (MongoRepository) DeleteItem(id int) {
 	collection.DeleteMany(ctx, Item{ID: id})
 	
 	disconnect(ctx,client)
-
-	return
 }
 
 func connnect() (context.Context, *mongo.Client) {

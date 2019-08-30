@@ -37,7 +37,6 @@ func UpdateItem(item Item) {
 	disconnect(ctx,client)
 }
 
-
 func GetItems() (items []Item) {
 	ctx, client := connnect()
 

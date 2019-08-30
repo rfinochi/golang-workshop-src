@@ -17,7 +17,7 @@ type item struct {
 	IsDone bool   `json:"isdone,omitempty"`
 }
 
-var items = []Item {}
+var items = []item {}
 
 func homeEndpoint(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to the Todo Web Api")
