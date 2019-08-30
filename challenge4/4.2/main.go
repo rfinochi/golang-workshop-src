@@ -81,7 +81,7 @@ func createRepository() TodoRepository {
 }
 
 func main() {
-	repositoryType = "Mongox"
+	repositoryType = "Mongo"
 	
 	router := mux.NewRouter().StrictSlash(true)
 
