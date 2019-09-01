@@ -42,4 +42,5 @@
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [Visual Studio Code official Go extension](https://code.visualstudio.com/docs/languages/go)
 - [Postman](https://www.getpostman.com)
-- [MongoDB](https://www.mongodb.com/)
+- [MongoDB](https://www.mongodb.com)
+- [Google Cloud SDK](https://cloud.google.com/sdk/docs/)
