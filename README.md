@@ -4,6 +4,7 @@
 
 * [Online Slide Decks](https://decks.golang-workshop.io)
 * [Slide Decks](https://github.com/rfinochi/golang-workshop-decks/tree/master/content)
-* [ToDo Sample Source Code](https://github.com/rfinochi/golang-workshop-todo)
+* [To-Do Sample Source Code](https://github.com/rfinochi/golang-workshop-todo)
+* [To-Do Web API Doc](https://todo.golang-workshop.io/api/index.html)
 
 <img src="https://blog.golang.org/gopher/gopher.png" alt="gopher" width="70"/>
