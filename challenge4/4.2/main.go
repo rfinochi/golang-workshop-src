@@ -14,7 +14,7 @@ import (
 var repositoryType string
 
 func homeEndpoint(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the Todo Web Api")
+	fmt.Fprintf(w, "Welcome to the To-Do Web API")
 }
 
 func createItemEndpoint(w http.ResponseWriter, r *http.Request) {
