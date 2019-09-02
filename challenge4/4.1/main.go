@@ -87,11 +87,11 @@ func main() {
 	router := mux.NewRouter().StrictSlash(true)
 
 	router.HandleFunc("/", homeEndpoint)
-	router.HandleFunc("/todo", createItemEndpoint).Methods("POST")
-	router.HandleFunc("/todo", getItemsEndpoint).Methods("GET")
-	router.HandleFunc("/todo/{id}", getItemEndpoint).Methods("GET")
-	router.HandleFunc("/todo/{id}", updateItemEndpoint).Methods("PATCH")
-	router.HandleFunc("/todo/{id}", deleteItemEndpoint).Methods("DELETE")
+	router.HandleFunc("/api", createItemEndpoint).Methods("POST")
+	router.HandleFunc("/api", getItemsEndpoint).Methods("GET")
+	router.HandleFunc("/api/{id}", getItemEndpoint).Methods("GET")
+	router.HandleFunc("/api/{id}", updateItemEndpoint).Methods("PATCH")
+	router.HandleFunc("/api/{id}", deleteItemEndpoint).Methods("DELETE")
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
