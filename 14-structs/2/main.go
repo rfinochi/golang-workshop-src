@@ -45,6 +45,7 @@ func main() {
 	var animal Animal
 	animal = &Dog{}            // returns a pointer to a new Dog
 	fmt.Println(animal.Name()) // Dog
+	animal.Bark()
 
 	//2 - Struct embedding
 	gd := &GuideDog{}
