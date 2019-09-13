@@ -25,10 +25,10 @@ func createItemEndpoint(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.Unmarshal(reqBody, &newItem)
-	
+
 	repo := createRepository()
 	repo.CreateItem(newItem)
-	
+
 	w.WriteHeader(http.StatusCreated)
 	fmt.Fprintf(w, "OK")
 }
@@ -73,7 +73,7 @@ func deleteItemEndpoint(w http.ResponseWriter, r *http.Request) {
 }
 
 func createRepository() TodoRepository {
-	if (repositoryType == "Mongo"){
+	if repositoryType == "Mongo" {
 		return &MongoRepository{}
 	} else {
 		return &InMemory{}
@@ -81,8 +81,8 @@ func createRepository() TodoRepository {
 }
 
 func main() {
-	repositoryType = "Mongo"
-	
+	repositoryType = ""
+
 	router := mux.NewRouter().StrictSlash(true)
 
 	router.HandleFunc("/", homeEndpoint)

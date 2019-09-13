@@ -1,6 +1,6 @@
 package main
 
-var items = []Item {}
+var items = []Item{}
 
 type InMemory struct {
 }
@@ -16,7 +16,8 @@ func (InMemory) UpdateItem(updatedItem Item) {
 			item.IsDone = updatedItem.IsDone
 			items = append(items[:i], item)
 		}
-	}}
+	}
+}
 
 func (InMemory) GetItems() []Item {
 	return items
@@ -24,11 +25,11 @@ func (InMemory) GetItems() []Item {
 
 func (InMemory) GetItem(id int) Item {
 	var result Item
-	
+
 	for _, item := range items {
 		if item.ID == id {
 			result = item
-			break;
+			break
 		}
 	}
 

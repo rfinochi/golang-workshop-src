@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"	
+	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
@@ -17,20 +17,19 @@ func (MongoRepository) CreateItem(newItem Item) {
 	collection := client.Database("todo").Collection("items")
 	collection.InsertOne(ctx, newItem)
 
-	disconnect(ctx,client)
+	disconnect(ctx, client)
 }
 
 func (MongoRepository) UpdateItem(item Item) {
-	update := bson.M{"$set": bson.M{"title": item.Title,"isdone": item.IsDone }}
+	update := bson.M{"$set": bson.M{"title": item.Title, "isdone": item.IsDone}}
 
 	ctx, client := connnect()
 
 	collection := client.Database("todo").Collection("items")
 	collection.UpdateOne(ctx, Item{ID: item.ID}, update)
 
-	disconnect(ctx,client)
+	disconnect(ctx, client)
 }
-
 
 func (MongoRepository) GetItems() (items []Item) {
 	ctx, client := connnect()
@@ -45,7 +44,7 @@ func (MongoRepository) GetItems() (items []Item) {
 		items = append(items, oneItem)
 	}
 
-	disconnect(ctx,client)
+	disconnect(ctx, client)
 
 	return
 }
@@ -55,8 +54,8 @@ func (MongoRepository) GetItem(id int) (item Item) {
 
 	collection := client.Database("todo").Collection("items")
 	collection.FindOne(ctx, Item{ID: id}).Decode(&item)
-	
-	disconnect(ctx,client)
+
+	disconnect(ctx, client)
 
 	return
 }
@@ -66,15 +65,15 @@ func (MongoRepository) DeleteItem(id int) {
 
 	collection := client.Database("todo").Collection("items")
 	collection.DeleteMany(ctx, Item{ID: id})
-	
-	disconnect(ctx,client)
+
+	disconnect(ctx, client)
 
 	return
 }
 
 func connnect() (context.Context, *mongo.Client) {
 	ctx := context.Background()
-	client, _ := mongo.Connect(ctx,options.Client().ApplyURI("mongodb://localhost:27017"))
+	client, _ := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
 
 	return ctx, client
 }
