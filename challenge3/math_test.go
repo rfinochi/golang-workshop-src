@@ -18,7 +18,7 @@ func BenchmarkSquaresPlusCubes(b *testing.B) {
 	}
 }
 
-func TestSquaresPlusCubesMP(t *testing.T) {
+func TestSquaresPlusCubesMT(t *testing.T) {
 	c := make(chan int)
 	go SquaresPlusCubesMT(in, c)
 	got := <-c
@@ -28,7 +28,7 @@ func TestSquaresPlusCubesMP(t *testing.T) {
 	}
 }
 
-func BenchmarkSquaresPlusCubesMP(b *testing.B) {
+func BenchmarkSquaresPlusCubesMT(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		c := make(chan int)
 		go SquaresPlusCubesMT(in, c)
