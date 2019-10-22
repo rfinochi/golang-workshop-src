@@ -37,7 +37,7 @@
         GOROOT = [Directorio de instalacion]
         GOPATH = [Directorio del Workspace, tiene que ser distinto al de instalacion]
 
-## Otras Herraminetas
+## Otras Herramientas
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [Visual Studio Code official Go extension](https://code.visualstudio.com/docs/languages/go)
