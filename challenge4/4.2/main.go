@@ -76,7 +76,7 @@ func createRepository() TodoRepository {
 	if repositoryType == "Mongo" {
 		return &MongoRepository{}
 	} else {
-		return &InMemory{}
+		return &InMemoryRepository{}
 	}
 }
 

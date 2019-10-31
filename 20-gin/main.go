@@ -17,7 +17,7 @@ func create(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "create"})
 }
 
-func getOne(c *gin.Context)) {
+func getOne(c *gin.Context) {
 	c.Header("Content-Type", "application/json")
 	c.JSON(http.StatusOK, gin.H{"message": c.Param("num")})
 }

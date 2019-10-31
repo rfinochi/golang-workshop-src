@@ -2,14 +2,14 @@ package main
 
 var items = []Item{}
 
-type InMemory struct {
+type InMemoryRepository struct {
 }
 
-func (InMemory) CreateItem(newItem Item) {
+func (InMemoryRepository) CreateItem(newItem Item) {
 	items = append(items, newItem)
 }
 
-func (InMemory) UpdateItem(updatedItem Item) {
+func (InMemoryRepository) UpdateItem(updatedItem Item) {
 	for i, item := range items {
 		if item.ID == updatedItem.ID {
 			item.Title = updatedItem.Title
@@ -19,11 +19,11 @@ func (InMemory) UpdateItem(updatedItem Item) {
 	}
 }
 
-func (InMemory) GetItems() []Item {
+func (InMemoryRepository) GetItems() []Item {
 	return items
 }
 
-func (InMemory) GetItem(id int) Item {
+func (InMemoryRepository) GetItem(id int) Item {
 	var result Item
 
 	for _, item := range items {
@@ -36,7 +36,7 @@ func (InMemory) GetItem(id int) Item {
 	return result
 }
 
-func (InMemory) DeleteItem(id int) {
+func (InMemoryRepository) DeleteItem(id int) {
 	for i, item := range items {
 		if item.ID == id {
 			items = append(items[:i], items[i+1:]...)
