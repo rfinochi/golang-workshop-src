@@ -7,16 +7,17 @@ func sum(s []int, c chan int) {
 	for _, v := range s {
 		sum += v
 	}
-	c <- sum // send sum to c
+	c <- sum
 }
 
 func main() {
 	s := []int{7, 2, 8, -9, 4, 0}
 
-	c := make(chan int)
-	go sum(s[:len(s)/2], c)
-	go sum(s[len(s)/2:], c)
-	x, y := <-c, <-c // receive from c
+	cx := make(chan int)
+	cy := make(chan int)
+	go sum(s[:len(s)/2], cx)
+	go sum(s[len(s)/2:], cy)
+	x, y := <-cx, <-cy
 
 	fmt.Println(x, y, x+y)
 }
