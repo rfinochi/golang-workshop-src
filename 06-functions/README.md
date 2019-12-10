@@ -48,7 +48,7 @@ fmt.Println("Difference is ", diff)
 ```
 
 
-## Named return values
+## Named Return Values
 
 Cuando se define una funcion se le puede asignar un nombre al tipo de dato de retorno para luego referenciarlo en el codigo de la funcion.
 
