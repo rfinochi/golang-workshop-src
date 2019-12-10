@@ -2,7 +2,7 @@
 
 Una variable es un nombre que se le asigna a una porcion de memoria para almacenar un valor de un determinado tipo.
 
-El keyword `var`se usa para declarar variables. La sintaxis es `var <name> <type>` seguido (opcionalmente) por un valor inicial.
+El keyword `var` se usa para declarar variables. La sintaxis es `var <name> <type>` seguido (opcionalmente) por un valor inicial.
 
 Ejemplos:
 
