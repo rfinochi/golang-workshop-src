@@ -18,7 +18,6 @@ func  Bark(d *Dog) {
 	fmt.Println("Woof!")
 }
 
-
 type GuideDog struct {
 	*Dog
 }
