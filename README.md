@@ -4,6 +4,8 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/rfinochi/golang-workshop-src?style=plastic)
 [![License](https://img.shields.io/github/license/rfinochi/golang-workshop-src?style=plastic)](https://opensource.org/licenses/mit-license.php)
 
+## Go Programming Language Workshop Resources
+
 * [Online Slide Decks](https://decks.golang-workshop.io)
 * [Slide Decks](https://github.com/rfinochi/golang-workshop-decks/tree/master/content)
 * [To-Do Sample Web API Source Code](https://github.com/rfinochi/golang-workshop-todo)
