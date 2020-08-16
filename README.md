@@ -2,6 +2,7 @@
 
 [![GitHub issues](https://img.shields.io/github/issues/rfinochi/golang-workshop-src?style=plastic)](https://github.com/rfinochi/golang-workshop-src/issues)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/rfinochi/golang-workshop-src?style=plastic)
+![OSS Lifecycle](https://img.shields.io/osslifecycle/rfinochi/golang-workshop-src?style=plastic)
 [![License](https://img.shields.io/github/license/rfinochi/golang-workshop-src?style=plastic)](https://opensource.org/licenses/mit-license.php)
 
 ## Go Programming Language Workshop Resources
