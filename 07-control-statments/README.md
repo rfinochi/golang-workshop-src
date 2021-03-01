@@ -60,6 +60,27 @@ for i := 1; i <= 10; i = i + 1 {
 }
 ```
 
+## range
+
+El lenguaje Go proporciona la palabra clave range para iterar sobre una variedad de colecciones
+
+```go
+question := "¿Cómo estás?"
+
+for i, c := range question {
+ fmt.Printf("%v %c\n", i, c)
+}
+```
+
+En cada iteración, las variables i y c se asignan a un índice en la coleccion y el elemento en esa posición.
+Si no se necesita el índice, el identificador en blanco (un guión bajo) permite ignorarlo: 
+
+```go
+for _, c := range question {
+ fmt.Printf("%c ", c)
+} 
+```
+
 ## switch
 
 La instruccion de control `switch` evalua una expresion y la compara contra una lista de posibles valores o expresiones que puedan coincidir. Es una forma abreviada de escribir muchas clausulas `if else`.
