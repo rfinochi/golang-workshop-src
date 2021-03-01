@@ -1,97 +1,112 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/contrib/static"
+	"github.com/gin-gonic/gin"
 )
 
-type item struct {
-	ID     int    `json:"id,omitempty"`
-	Title  string `json:"title,omitempty"`
-	IsDone bool   `json:"isdone,omitempty"`
-}
-
-var items = []item {}
-
-func homeEndpoint(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the To-Do Web API")
-}
-
-func createItemEndpoint(w http.ResponseWriter, r *http.Request) {
-	var newItem item
-	reqBody, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		fmt.Fprintf(w, err.Error())
-	}
-
-	json.Unmarshal(reqBody, &newItem)
-	items = append(items, newItem)
-	w.WriteHeader(http.StatusCreated)
-
-	json.NewEncoder(w).Encode(newItem)
-}
-
-func getItemEndpoint(w http.ResponseWriter, r *http.Request) {
-	itemID, _ := strconv.Atoi(mux.Vars(r)["id"])
-
-	for _, singleItem := range items {
-		if singleItem.ID == itemID {
-			json.NewEncoder(w).Encode(singleItem)
-		}
-	}
-}
-
-func getItemsEndpoint(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode(items)
-}
-
-func updateItemEndpoint(w http.ResponseWriter, r *http.Request) {
-	itemID, _ := strconv.Atoi(mux.Vars(r)["id"])
-	var updatedItem item
-
-	reqBody, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		fmt.Fprintf(w, err.Error())
-	}
-	json.Unmarshal(reqBody, &updatedItem)
-
-	for i, singleItem := range items {
-		if singleItem.ID == itemID {
-			singleItem.Title = updatedItem.Title
-			singleItem.IsDone = updatedItem.IsDone
-			items = append(items[:i], singleItem)
-			json.NewEncoder(w).Encode(singleItem)
-		}
-	}
-}
-
-func deleteItemEndpoint(w http.ResponseWriter, r *http.Request) {
-	itemID, _ := strconv.Atoi(mux.Vars(r)["id"])
-
-	for i, singleItem := range items {
-		if singleItem.ID == itemID {
-			items = append(items[:i], items[i+1:]...)
-			fmt.Fprintf(w, "The item with ID %v has been deleted successfully", itemID)
-			break
-		}
-	}
-}
-
 func main() {
-	router := mux.NewRouter().StrictSlash(true)
+	router := SetupRouter()
 
-	router.HandleFunc("/", homeEndpoint)
-	router.HandleFunc("/api", createItemEndpoint).Methods("POST")
-	router.HandleFunc("/api", getItemsEndpoint).Methods("GET")
-	router.HandleFunc("/api/{id}", getItemEndpoint).Methods("GET")
-	router.HandleFunc("/api/{id}", updateItemEndpoint).Methods("PATCH")
-	router.HandleFunc("/api/{id}", deleteItemEndpoint).Methods("DELETE")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = os.Getenv("HTTP_PLATFORM_PORT")
+		if port == "" {
+			port = "8080"
+			log.Printf("Defaulting to port %s", port)
+		}
+	}
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	router.Run(fmt.Sprintf(":%s", port))
+}
+
+func SetupRouter() *gin.Engine {
+	router := gin.Default()
+
+	router.Use(static.Serve("/", static.LocalFile("./views", true)))
+
+	api := router.Group("/api")
+	api.GET("/", getItemsEndpoint)
+	api.GET("/:id", getItemEndpoint)
+	api.POST("/", postItemEndpoint)
+	api.PUT("/", putItemEndpoint)
+	api.PATCH("/:id", updateItemEndpoint)
+	api.DELETE("/:id", deleteItemEndpoint)
+
+	return router
+}
+
+func postItemEndpoint(c *gin.Context) {
+	var newItem Item
+	c.BindJSON(&newItem)
+
+	repo := createRepository()
+	repo.CreateItem(newItem)
+
+	c.Header("Content-Type", "application/json")
+	c.JSON(http.StatusCreated, gin.H{"message": "OK"})
+}
+
+func putItemEndpoint(c *gin.Context) {
+	var newItem Item
+	c.BindJSON(&newItem)
+
+	repo := createRepository()
+	repo.CreateItem(newItem)
+
+	c.Header("Content-Type", "application/json")
+	c.JSON(http.StatusCreated, gin.H{"message": "OK"})
+}
+
+func getItemEndpoint(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	repo := createRepository()
+	c.Header("Content-Type", "application/json")
+	c.JSON(http.StatusOK, repo.GetItem(id))
+}
+
+func getItemsEndpoint(c *gin.Context) {
+	repo := createRepository()
+	c.JSON(http.StatusOK, repo.GetItems())
+}
+
+func updateItemEndpoint(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	var updatedItem Item
+	c.BindJSON(&updatedItem)
+
+	repo := createRepository()
+	updatedItem.ID = id
+	repo.UpdateItem(updatedItem)
+
+	c.Header("Content-Type", "application/json")
+	c.JSON(http.StatusOK, gin.H{"message": "OK"})
+}
+
+func deleteItemEndpoint(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	repo := createRepository()
+	repo.DeleteItem(id)
+
+	c.Header("Content-Type", "application/json")
+	c.JSON(http.StatusOK, gin.H{"message": "OK"})
+}
+
+func createRepository() TodoRepository {
+	repositoryType := os.Getenv("REPOSITORY_TYPE")
+
+	if repositoryType == "Mongo" {
+		return &MongoRepository{}
+	} else {
+		return &MemoryRepository{}
+	}
 }
