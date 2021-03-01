@@ -62,7 +62,7 @@ for i := 1; i <= 10; i = i + 1 {
 
 ## range
 
-El lenguaje Go proporciona la palabra clave range para iterar sobre una variedad de colecciones
+Go proporciona la palabra clave `range` para iterar sobre una variedad de colecciones
 
 ```go
 question := "¿Cómo estás?"
