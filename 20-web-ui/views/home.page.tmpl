@@ -1,0 +1,24 @@
+{{template "base" .}}
+
+{{define "title"}}Home{{end}}
+
+{{define "main"}}
+    <h2>Latest ToDo Items</h2>
+    {{if .}}
+     <table>
+        <tr>
+            <th>Content</th>
+            <th>Is Done</th>
+        </tr>
+        {{range .}}
+        <tr>
+            <!-- Use the new semantic URL style-->
+            <td><a href='/show/{{.ID}}'>{{.Content}}</a></td>
+            <td>{{.IsDone}}</td>
+        </tr>
+        {{end}}
+    </table>
+    {{else}}
+        <p>There's nothing to see here... yet!</p>
+    {{end}}
+{{end}}
