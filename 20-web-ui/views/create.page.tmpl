@@ -1,0 +1,15 @@
+{{template "base" .}}
+
+{{define "title"}}Create a New ToDo Item{{end}}
+
+{{define "main"}}
+<form action='/create' method='POST'>
+    <div>
+        <label>Content:</label>
+        <textarea name='content'></textarea>
+    </div>
+    <div>
+        <input type='submit' value='Publish ToDo item'>
+    </div>
+</form>
+{{end}}

@@ -4,9 +4,9 @@ CREATE DATABASE toDo CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 -- Switch to using the `toDo` database.
 USE toDo;
 
---Then copy and paste the following SQL statement to create a new snippets table to hold the text snippets for our application:
+--Then copy and paste the following SQL statement to create a new items table to hold the text todo Items for our application:
 
--- Create a `snippets` table.
+-- Create a `items` table.
 CREATE TABLE items (
     id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL,
