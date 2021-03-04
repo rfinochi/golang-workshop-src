@@ -1,0 +1,12 @@
+{{template "base" .}}
+
+{{define "title"}}ToDo Item #{{.ID}}{{end}}
+
+{{define "main"}}
+<div class='snippet'>
+    <div class='metadata'>
+        <strong>{{.Content}}</strong>
+    </div>
+    <pre><code>Done: {{.IsDone}}</code></pre>
+</div>
+{{end}}
