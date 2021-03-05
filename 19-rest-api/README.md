@@ -29,17 +29,17 @@ func helloWorld(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-    //servermux
+	//servermux
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", helloWorld)
 
-    //webserver
+	//webserver
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 ```
 
-El handler `helloWorld` es solo una función normal de Go con dos parámetros. El parámetro `http.ResponseWriter` proporciona métodos para construir una respuesta HTTP y enviarla al usuario, y el parámetro `* http.Request` es un puntero a una estructura que contiene información sobre el request actual (por ejemplo el método HTTP y la URL solicitada). 
+El handler `helloWorld` es una función normal de Go con dos parámetros. El parámetro `http.ResponseWriter` proporciona métodos para construir una respuesta HTTP y enviarla al usuario, y el parámetro `* http.Request` es un puntero a una estructura que contiene información sobre el request actual (por ejemplo el método HTTP y la URL solicitada). 
 
 Cuando se ejecute este código, se va a iniciar un servidor web escuchando en el puerto 8080 de `localhost`. Cada vez que el servidor recibe una nueva solicitud HTTP, pasará la solicitud al servemux y, a su vez, el servemux verificará la ruta de la URL y enviará la solicitud al handler correspondiente. 
 
