@@ -4,16 +4,13 @@
 
 Desde los handlers de Go, podemos utilizar el paquete `html/template` para emitir como respuesta HTML conformado utilizando templates de las paginas y datos de la aplicación
 
-La funcion `ReadFile` del paquete `ioutil` permite leer informacion.
-
-El siguiente ejemplo lee el contenido del archivo `sample.txt`, chequea que si se producieron errores durante la operacion de lectura, e imprime el contenido del archivo.
-
 ```go
 
 type toDoItem struct {
 	ID      int
 	Content string
 	IsDone  bool
+    Created time.Time
 }
 
 var toDoItems = make([]toDoItem, 0, 0)
@@ -65,9 +62,9 @@ Con nuestros templates listos en `ts`, el último paso es ejecutar el metodo `Ex
 
 ## HTML Templates
 
-Los templates HTML en Go utilizan la nomenclatura {name}.page.tmpl y contienen el markup HTML para describir la página. Dentro de estos templates HTML, cualquier dato dinámico que pase está representado por el caracter `.` carácter (denominado `dot`).
+Los templates HTML en Go, por convención, utilizan la nomenclatura `{name}.page.tmpl` y contienen el markup HTML para describir la página. Dentro de estos templates HTML, cualquier dato dinámico que pase está representado por el caracter `.` carácter (denominado `dot`).
 
-En este caso específico, el tipo de punto subyacente será una estructura `toDoItem`. Cuando el tipo de punto subyacente es una estructura, puede representar  el valor de cualquier campo exportado colocando un punto con el nombre del campo. Entonces, debido a que nuestra estructura `toDoItem` tiene un campo `Content`, podríamos mostrar el contenido escribiendo `{{.Content}}` en nuestros templates.
+En este caso específico, el tipo de `dot` será una estructura `toDoItem`. Cuando el tipo `dot` es una estructura, puede representar  el valor de cualquier campo exportado colocando un punto con el nombre del campo. Entonces, debido a que nuestra estructura `toDoItem` tiene un campo `Content`, podríamos mostrar el contenido escribiendo `{{.Content}}` en nuestros templates.
 
 ```go
 {{template "base" .}}
@@ -84,11 +81,11 @@ En este caso específico, el tipo de punto subyacente será una estructura `toDo
 {{end}}
 ```
 
-Este template declara la estructura HTML de los grupos `title` y `main`, los  cuales estan definidos en `base.layout.tmpl`, template que tambien se suma al grupo de templates para parsear y generar la salida HTML, el cual provee la estructura que se utiliza en todo el sitio. El código de este template se puede encontrar en la carpeta `views` para poder entender la estructura y como se complementan ambos archivos para generar la salida HTML.
+Este template declara la estructura HTML de las secciones `title` y `main`, las cuales estan definidos en `base.layout.tmpl`, template que tambien se suma al grupo de templates para parsear y generar la salida HTML, el cual provee la estructura que se utiliza en todo el sitio. El código de este template se puede encontrar en la carpeta `views` para poder entender la estructura y como se complementan ambos archivos para generar la salida HTML.
 
 #### Templates anidados
 
-Cuando invoca una plantilla desde otra plantilla, el punto debe pasarse  explícitamente a la plantilla que se invoca.
+Cuando invoca una template desde otra template, `dot` debe pasarse explícitamente al template que se invoca.
 
 ```go
 {{template "base" .}}
@@ -97,24 +94,25 @@ Cuando invoca una plantilla desde otra plantilla, el punto debe pasarse  explíc
 {{block "sidebar" .}}{{end}}
 ```
 
-#### Invocación de metodos en los templates
+#### Invocación de métodos en los templates
 
-Si el objeto que está obteniendo tiene métodos definidos, puede llamarlos (siempre que se exporten y devuelvan solo un valor, o un solo valor y un error).
+Si el elemento que está obteniendo en `dot` tiene métodos definidos, puede llamarlos (siempre que se exporten y devuelvan solo un valor, o un solo valor y un error).
 
-Por ejemplo, si .Created tiene el tipo subyacente time.Time podría representar el nombre del día de la semana llamando a su método Weekday()
+Por ejemplo, si `.Created` tiene el tipo subyacente `time.Time` podría representar el nombre del día de la semana llamando a su método `Weekday()`
 
 ```go
 <span>{{.Created.Weekday}}</span>
 ```
-También puede pasar parámetros a métodos. Por ejemplo, podría usar el método AddDate() para agregar seis meses a la fecha
+
+También puede pasar parámetros a métodos. Por ejemplo, podría usar el método `AddDate()` para agregar seis meses a la fecha
 
 ```go
-<span>{{.Snippet.Created.AddDate 0 6 0}}</span>
+<span>{{.Created.AddDate 0 6 0}}</span>
 ```
 
 #### Acciones y funciones de los Templates
 
-Ya hemos hablado sobre algunas de las acciones ({{define}}, {{template}} y {{block}}, pero hay tres más que puede usar para controlar la visualización de datos dinámicos: {{if}} , {{with}} y {{range}}. 
+Ya hemos hablado sobre algunas de las acciones (`{{define}}`, `{{template}}` y `{{block}}`, pero hay tres más que puede usar para controlar la visualización de datos dinámicos: `{{if}}` , `{{with}}` y `{{range}}`. 
 
 Acción  | Descripción
 ------------- | -------------
@@ -124,11 +122,11 @@ Acción  | Descripción
 
 Hay algunas cosas sobre estas acciones para señalar:
 
-- Para las tres acciones, la cláusula {{else}} es opcional. Por ejemplo, puede escribir {{if .Foo}} C1 {{end}} si no hay contenido C2 que desee renderizar.
+- Para las tres acciones, la cláusula `{{else}}` es opcional. Por ejemplo, puede escribir `{{if .Foo}} C1 {{end}}` si no hay contenido C2 que desee renderizar.
 
 - Los valores vacíos son falso, 0, cualquier puntero nulo o valor de interfaz y cualquier matriz, sector, mapa o cadena de longitud cero.
 
- - Es importante comprender que las acciones `with` y `range` cambian el valor del punto. Una vez que se comience a usarlo, lo que representa el punto puede ser diferente dependiendo de dónde se encuentre en la plantilla y de lo que esté haciendo. 
+ - Es importante comprender que las acciones `with` y `range` cambian el valor de `dot`. Una vez que se comience a usarlo, lo que representa `dot` puede ser diferente dependiendo de dónde se encuentre en el template y de lo que esté haciendo. 
 
 El paquete `html/template` también proporciona algunas funciones que se pueden usar para agregar lógica adicional a los templates y controlar lo que se representa en tiempo de ejecución.
 
@@ -141,4 +139,4 @@ Acción  | Descripción
 {{index .Foo i}} | el valor de .Foo en el índice i. El tipo subyacente de .Foo debe ser un mapa, un sector o una matriz
 {{printf "%s-%s" .Foo .Bar}} | Una cadena formateada que contiene los valores .Foo y .Bar. Funciona de la misma forma que fmt.Sprintf ()
 {{len .Foo}} | la longitud de .Foo como un número entero
-{{$bar := len .Foo}} | Asignar la longitud de .Foo a la variable de plantilla $ bar 
+{{$bar := len .Foo}} | Asignar la longitud de .Foo a la variable de template $bar 

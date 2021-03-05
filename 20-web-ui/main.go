@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -16,6 +17,7 @@ type toDoItem struct {
 	ID      int
 	Content string
 	IsDone  bool
+	Created time.Time
 }
 
 var errorLog = log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
@@ -112,6 +114,7 @@ func create(w http.ResponseWriter, r *http.Request) {
 		ID:      rand.Intn(100),
 		Content: content,
 		IsDone:  false,
+		Created: time.Now(),
 	}
 
 	toDoItems = append(toDoItems, todoItem)
