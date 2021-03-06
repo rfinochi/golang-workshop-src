@@ -29,6 +29,12 @@ Un flag opcional se puede indicar controlando si el valor es el mismo que el val
 
 Un flag se puede leer independientemente de la posicion en que el usuario los hubiera especificado.
 
+Las flag se pasan en la ejecución del programa con la siguiente sintaxis `-flag="value"`
+
+```
+go run . -addr=":80"
+```
+
 ## Environment Variables
 
 La variables de entorno se usan para configurar aspectos de sistema en la mayoria de los *NIX y tambien en Windows. Son pares de clave-valor usualmente disponibles para todos los programas que corren en la terminal/shell. Se pueden definir variables de entorno custom solo disponibles durante la ejecucion de un script de shell.
