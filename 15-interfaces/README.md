@@ -38,7 +38,7 @@ type SalaryCalculator interface {
 sc := [...]SalaryCalculator{Permanent{1, 5000, 50}, Contract{3, 7000}}
 totalPayout := 0
 for _, v := range sc {
-    totalPayout += v.calculateSalary
+    totalPayout += v.calculateSalary()
 }
 fmt.Println(totalPayout)
 ```
