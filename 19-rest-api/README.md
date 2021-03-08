@@ -82,3 +82,58 @@ func create(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(newData)
 }
 ```
+
+## Middlewares
+
+Cuando se crea una aplicación web, probablemente exista alguna funcionalidad compartida que se desee reutilizar para muchos (o todos) los `requests HTTP`.
+Por ejemplo, es posible que se desee registrar cada `request`, comprimir cada respuesta o verificar un caché antes de pasar el `request` a sus `handlers`.
+
+Una forma habitual de organizar esta funcionalidad compartida es implementarla como `middlewares`. Esencialmente, un `middleware` se trata de código autónomo que actúa de forma independiente sobre un `request` antes o después de los `handlers` de aplicaciones normales. 
+
+El patrón estándar para crear un `middleware` custom es el siguiente:
+
+```go
+func myMiddleware(next http.Handler) http.Handler {
+    fn := func(w http.ResponseWriter, r *http.Request) {
+        // TODO: Execute our middleware logic here...
+        next.ServeHTTP(w, r)
+    }
+
+    return http.HandlerFunc(fn)
+}
+```
+
+- La función `myMiddleware()` es esencialmente un `wrapper` sobre el `handler` `next` (El cual representa el siguiente `handler` de la cadena).
+
+- Establece una función `fn` que se cierra sobre el `handler` `next` para formar un `closure`. Cuando se ejecuta `fn`, ejecuta nuestra lógica de middleware y luego transfiere el control al `handler` `next` llamando al método `ServeHTTP()`.
+
+- Luego convertimos este `closure` en `http.Handler` y lo devolvemos, usando el adaptador `http.HandlerFunc()`.
+
+Un ajuste a este patrón, es usar una función anónima: 
+
+```go
+func myMiddleware(next http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        // TODO: Execute our middleware logic here...
+        next.ServeHTTP(w, r)
+    })
+}
+```
+
+Es importante explicar que la ubicación del `middleware` en la cadena de `handlers` afectará el comportamiento de la aplicación.
+
+Si coloca el middleware antes del `servemux` en la cadena, actuará en cada solicitud que reciba la aplicación. 
+
+```
+myMiddleware → servemux → application handler
+```
+
+Un buen ejemplo de dónde esto sería útil es el `middleware` para registrar `requests`, ya que normalmente es algo que se quiere hacer para todas los `requests`.
+
+Tambien se puede colocar el `middleware` después del `servemux` en la cadena, envolviendo un `handler` de aplicación específico. Esto hace que el middleware solo se ejecute para rutas específicas. 
+
+```
+servemux → myMiddleware → application handler
+```
+
+Un ejemplo de esto sería algo así como el `middleware` de autorización, que es posible que solo se desee ejecutar en rutas específicas. 
