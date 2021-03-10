@@ -16,12 +16,12 @@ func TestFibonacci(t *testing.T) {
 }
 
 func BenchmarkFibonacci(b *testing.B) {
-        for n := 0; n < b.N; n++ {
-                Fibonacci(10)
-        }
+	for n := 0; n < b.N; n++ {
+		Fibonacci(10)
+	}
 }
 
 func ExampleFibonacci() {
-    fmt.Println(Fibonacci(10))
-    // Output: 55
+	fmt.Println(Fibonacci(10))
+	// Output: 55
 }
