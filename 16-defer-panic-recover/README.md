@@ -19,7 +19,7 @@ if err != nil {
 ## Defer
 
 Una declaracion `defer` guarda la llamada a la funcion en una lista. Una vez finalizada la ejecucíon de la funcion circundante, se ejecutan todas las llamadas a las funciones diferidas que se guardaron previamente en esa lista.
-`defer` se usa comunmente para simplificar acciones de limpieza, o combinado con `recover` para recuperarnos de un error insalbable (`panic`)
+`defer` se usa comunmente para simplificar acciones de limpieza, o combinado con `recover` para recuperarnos de un error insalvable (`panic`)
 
 ```go
 func CopyFile(dstName, srcName string) (written int64, err error) {
