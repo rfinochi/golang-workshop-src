@@ -1,4 +1,4 @@
-# Challenge 2.1
+# Challenge 2.3
 
 Modelar la funcionalidad de un sistema de precios para una aerolinea que calcule los ingresos netos de un vuelo en base a los pasajeros y el precio base del ticket.
 

@@ -1,3 +1,3 @@
-# Challenge 2.2
+# Challenge 2.4
 
-Crear un test para verificar el codigo creado en el challenge 2.1 anterior.
+Crear un test para verificar el codigo creado en el challenge anterior (2.3).

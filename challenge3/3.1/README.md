@@ -1,4 +1,4 @@
-# Challenge 3
+# Challenge 3.1
 
 * Convertir las siguientes funciones para que utilicen _gorutines_ y _channels_.
 * Crear dos _benchmarks_ para comparar la velocidad de ejecucion entre las versiones con y sin uso de _gorutines_.

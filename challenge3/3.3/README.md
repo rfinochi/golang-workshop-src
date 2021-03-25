@@ -1,6 +1,6 @@
-# Challenge 4.2
+# Challenge 3.3
 
-Modificar la API Rest del challenge 4.1 para que pueda acceder a diferentes fuentes de datos (en memoria y MongoDB) usando el patron *[Repository](https://medium.com/@pererikbergman/repository-design-pattern-e28c0f3e4a30)*.
+Modificar la API Rest del challenge 3.2 para que pueda acceder a diferentes fuentes de datos (en memoria y MongoDB) usando el patron *[Repository](https://medium.com/@pererikbergman/repository-design-pattern-e28c0f3e4a30)*.
 
 Hints:
 
